@@ -3,9 +3,6 @@ from fileutil import getfilelist, parsefiles
 
 @get('/display')
 def display():
-    examplefile = file("files/example.txt", 'r')
-    lines = examplefile.readlines()
-
     # TODO: time this for large files and with multiple simultaneous connections and optimize if needed
     files = getfilelist()
 
