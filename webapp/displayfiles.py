@@ -1,4 +1,5 @@
 from bottle import get, run
+from fileutil import getfilelist, parsefiles
 
 @get('/display')
 def display():
@@ -6,13 +7,11 @@ def display():
     lines = examplefile.readlines()
 
     # TODO: time this for large files and with multiple simultaneous connections and optimize if needed
-    wordcount = {}
-    for line in lines:
-        for word in line.split():
-            if word in wordcount:
-                wordcount[word] += 1
-            else:
-                wordcount[word] = 1
+    files = getfilelist()
+
+    print "got files: " + str(files)
+
+    wordcount = parsefiles(files)
 
     return str(wordcount)
 
