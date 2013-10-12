@@ -21,6 +21,12 @@ def do_upload():
     if data and data.file:
         raw = data.file.read() # Dangerous for big files
         filename = data.filename
+
+        # TODO: this will overwrite any existing file, should check and give message instead of overwriting
+        savefile = file("./files/" + filename, 'w')
+        savefile.write(raw)
+        savefile.close()
+
         report = "<p>The uploaded file named " + filename + " is " + str(len(raw)) + " bytes long</p>"
         report += "<p>Raw file contents are:</p><pre>" + raw + "</pre>"
     else:
