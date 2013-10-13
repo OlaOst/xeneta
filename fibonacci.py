@@ -41,5 +41,16 @@ def instaFib(n):
     phi = (1 + sqrt(5)) / 2
     return int((phi**n - (-1/phi)**n) / sqrt(5))
 
-# TODO: a fibonacci that gives correct results for n > 1200 without smashing
-# the stack or taking too much time
+
+def loopyFib(n):
+    '''A fibonacci using a loop instead of recursion. Complexity O(n)'''
+    counter, a, b = 0, 0, 1
+
+    while counter < n:
+        counter, a, b = counter+1, b, a + b
+
+    return a
+
+
+# TODO: a recursive fibonacci that gives correct results for n > 1200 without
+# smashing the stack or taking too much time

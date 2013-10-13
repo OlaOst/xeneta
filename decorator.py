@@ -23,13 +23,3 @@ class memoized(object):
             value = self.func(*args)
             self.cache[args] = value
             return value
-
-
-@memoized
-def fibonacci(n):
-    "Return the nth fibonacci number recursively"
-    if n in (0, 1):
-        return n
-    return fibonacci(n-1) + fibonacci(n-2)
-
-print fibonacci(35)
