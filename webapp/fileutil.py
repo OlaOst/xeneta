@@ -23,7 +23,7 @@ def parsefiles(files, wordcount):
 def parsefile(filename, wordcount):
     content = file("./files/" + filename, 'r').read()
 
-    washedcontent = sub('[^a-zA-Z_]', ' ', content).lower()
+    washedcontent = sub('[^a-zA-Z\'_]', ' ', content).lower()
 
     excludedwords = ['the', 'an', 'a', 'of', 'in', 'at', 'and', 'or', 'to', 'his', 'hers', 'its', 'their', 'by']
 
