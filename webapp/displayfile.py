@@ -1,6 +1,7 @@
 from bottle import route, view
 from fileutil import parsefile
 
+
 @route('/displayfile/<filename>')
 @view('displayfile')
 def displayfile(filename):
@@ -8,8 +9,8 @@ def displayfile(filename):
 
     result['file'] = filename
 
-    # TODO: make global wordcount so we do not have to recalculate it from all files on every request
-    # or just memoize parsefile?
+    # TODO: make global wordcount so we do not have to recalculate it from all
+    # files on every reques. Or just memoize parsefile?
     wordcount = {}
 
     parsefile(filename, wordcount)

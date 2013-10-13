@@ -1,5 +1,6 @@
 from bottle import route, view, request
-from fileutil import getfilelist, parsefiles
+from fileutil import getfilelist
+
 
 @route('/displayfiles')
 @view('displayfiles')
@@ -12,18 +13,20 @@ def displayfiles():
 
     return result
 
+
 @route('/displayfiles', method='POST')
 @view('displayfiles')
-def displayfiles():
+def uploadfile():
     result = {}
 
     data = request.files.data
 
     if data and data.file:
-        raw = data.file.read() # Dangerous for big files
+        raw = data.file.read()  # Dangerous for big files
         filename = data.filename
 
-        # TODO: this will overwrite any existing file, check and give message instead of overwriting?
+        # TODO: this will overwrite any existing file, check and give message
+        # instead of overwriting?
         savefile = file("./files/" + filename, 'w')
         savefile.write(raw)
         savefile.close()
