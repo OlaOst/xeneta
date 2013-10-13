@@ -20,10 +20,10 @@ def parsefiles(files, wordcount):
         parsefile(filename, wordcount)
 
 
-@memoize
+#@memoize
 def parsefile(filename, wordcount):
-    #content = file("./files/" + filename, 'r').read()
-    content = codecs.open("./files/" + filename, "r", "utf-8").read()
+    content = file("./files/" + filename, 'r').read()
+    #content = codecs.open("./files/" + filename, "r", "utf-8").read()
 
     washedcontent = sub('[^a-zA-Z\'_]', ' ', content).lower()
 

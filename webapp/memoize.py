@@ -1,7 +1,6 @@
 import functools
 
 
-
 def memoize(obj):
     cache = obj.cache = {}
 
