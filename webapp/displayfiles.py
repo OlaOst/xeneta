@@ -9,7 +9,9 @@ def display():
     #print "got files: " + str(files)
     result = "<p>Files loaded: " + ", ".join(files) + "</p>"
 
-    wordcount = parsefiles(files)
+    # TODO: make global wordcount so we do not have to recalculate it from all files on every request
+    wordcount = {}
+    parsefiles(files, wordcount)
 
     sortedwords = sorted(wordcount, key=wordcount.get, reverse=True)
 

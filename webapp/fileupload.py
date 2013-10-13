@@ -1,7 +1,5 @@
 from bottle import get, post, request, run
 
-
-
 uploadform = '''
     <form action="/upload" method="post" enctype="multipart/form-data">
         Upload file: <input name="data" type="file" />
@@ -15,7 +13,6 @@ def upload():
 
 @post('/upload') # or @route('/login', method='POST')
 def do_upload():
-    #name = request.forms.name
     data = request.files.data
 
     if data and data.file:
