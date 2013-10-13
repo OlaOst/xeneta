@@ -24,7 +24,8 @@
                $.plot("#topwords", dataSet, { 
                                      series: { bars: { show: true } },
                                      bars: { barWidth: 0.6, align: "center", horizontal: true },
-                                     yaxis: { mode: "categories", ticks: ticks }
+                                     yaxis: { mode: "categories", ticks: ticks },
+                                     xaxis: { tickDecimals: 0 }
                                     });
             });
         </script>
