@@ -5,8 +5,8 @@
 	<title>20 most common words</title>
 
         <script language="javascript" type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-        <script language="javascript" type="text/javascript" src="js/flot/jquery.flot.js"></script>
-        <script language="javascript" type="text/javascript" src="js/flot/jquery.flot.categories.js"></script>
+        <script language="javascript" type="text/javascript" src="js/flot/jquery.flot.min.js"></script>
+        <script language="javascript" type="text/javascript" src="js/flot/jquery.flot.categories.min.js"></script>
 
         <script type="text/javascript">
             $(function() {
@@ -24,18 +24,13 @@
                $.plot("#topwords", dataSet, { 
                                      series: { bars: { show: true } },
                                      bars: { barWidth: 0.6, align: "center", horizontal: true },
-                                     //xaxis: { tickLength: 0 },
                                      yaxis: { mode: "categories", ticks: ticks }
                                     });
             });
         </script>
     </head>
     <body>
-        <p>Files loaded: {{files}}</p>
         <p>20 most common words:</p>
-        {{topwords}}
-        <p>and their wordcounts:</p>
-        {{wordcounts}}
 
         <div id="topwords" style="width:600px;height:600px"></div>
     </body>
