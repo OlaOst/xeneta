@@ -52,5 +52,9 @@ def loopyFib(n):
     return a
 
 
+print "The 10th fibonacci number is " + str(trivialFib(10 - 1))
+print "The 100th fibonacci number is " + str(memoizedFib(100 - 1))
+print "The 1200th fibonacci number is " + str(loopyFib(1200 - 1))
+
 # TODO: a recursive fibonacci that gives correct results for n > 1200 without
 # smashing the stack or taking too much time
