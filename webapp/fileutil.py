@@ -25,8 +25,11 @@ def parsefile(filename, wordcount):
 
     washedcontent = sub('[^a-zA-Z_]', ' ', content).lower()
 
+    excludedwords = ['the', 'an', 'a', 'of', 'in', 'at', 'and', 'or', 'to', 'his', 'hers', 'its', 'their', 'by']
+
     for word in washedcontent.split():
-        if word in wordcount:
-            wordcount[word] += 1
-        else:
-            wordcount[word] = 1
+        if word not in excludedwords:
+            if word in wordcount:
+                wordcount[word] += 1
+            else:
+                wordcount[word] = 1
