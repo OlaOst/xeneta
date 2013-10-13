@@ -2,7 +2,7 @@
 
 from bottle import run, route, static_file
 import displayfiles
-import fileupload
+import displayfile
 
 @route('/js/<filename:path>')
 def send_static(filename):

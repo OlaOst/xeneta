@@ -1,30 +1,50 @@
 from bottle import route, view, run
 from fileutil import getfilelist, parsefiles
 
-@route('/display')
-@view('display')
-def display():
+@route('/displayfiles')
+@view('displayfiles')
+def displayfiles():
     result = {}
 
-    # TODO: time this for large files and with multiple simultaneous connections and optimize if needed
     files = getfilelist()
 
-    #print "got files: " + str(files)
-    #result = "<p>Files loaded: " + ", ".join(files) + "</p>"
-    result['files'] = ", ".join(files)
+    #filelinks = []
+    #for filename in files:
+    #    filelinks.append("<a href='/displayfile/" + filename + "'>" + filename + "</a>")
+
+    #result['files'] = ", ".join(files)
+    result['files'] = files
 
     # TODO: make global wordcount so we do not have to recalculate it from all files on every request
-    wordcount = {}
-    parsefiles(files, wordcount)
+    #wordcount = {}
+    #parsefiles(files, wordcount)
 
-    sortedwords = sorted(wordcount, key=wordcount.get, reverse=True)
+    #sortedwords = sorted(wordcount, key=wordcount.get, reverse=True)
 
-    #result += "<p>20 most popular words:</p><p>"
-    topwords = ""
-    for word in sortedwords[:20]:
-        topwords += word + ": " + str(wordcount[word]) + "<br/>"
+    #topwords = ""
+    #for word in sortedwords[:20]:
+    #    topwords += word + ": " + str(wordcount[word]) + "<br/>"
 
-    result['topwords'] = sortedwords[:20]
-    result['wordcounts'] = [wordcount[word] for word in sortedwords[:20]]
+    #result['topwords'] = sortedwords[:20]
+    #result['wordcounts'] = [wordcount[word] for word in sortedwords[:20]]
 
     return result
+
+@route('displayfiles', method='POST')
+@view('displayfiles')
+def do_upload():
+    data = request.files.data
+
+    if data and data.file:
+        raw = data.file.read() # Dangerous for big files
+        filename = data.filename
+
+        # TODO: this will overwrite any existing file, check and give message instead of overwriting?
+        savefile = file("./files/" + filename, 'w')
+        savefile.write(raw)
+        savefile.close()
+
+        files = getfilelist()
+        result['files'] = ", ".join(files)
+
+        return result
