@@ -4,8 +4,6 @@
 import collections
 
 
-# TODO: make sure that different functions with equal parameters are cached
-# separately
 class memoized(object):
     '''Decorator that caches the return value of a function when it is called.
        If called later with the same arguments the cached value is returned
