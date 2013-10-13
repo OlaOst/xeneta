@@ -9,6 +9,9 @@ def getfilelist():
             files.append(entry)
     return files
 
+# TODO: parsing all files for every page request is bad performance
+# make wordcount more global and a function that appends to it for one file
+# should wordcount then be defined here or where parsefiles is called?
 def parsefiles(files):
     wordcount = {}
     for filename in files:
