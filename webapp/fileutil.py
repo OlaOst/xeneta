@@ -1,6 +1,7 @@
 # convenience functions for loading and parsing files
 
 from os import listdir
+from memoize import memoize
 
 
 def getfilelist():
@@ -17,6 +18,7 @@ def parsefiles(files, wordcount):
         parsefile(filename, wordcount)
 
 
+@memoize
 def parsefile(filename, wordcount):
     content = file("./files/" + filename, 'r').read()
 
