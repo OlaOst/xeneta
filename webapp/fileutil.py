@@ -3,6 +3,7 @@
 from os import listdir
 from re import sub
 from memoize import memoize
+import codecs
 
 
 def getfilelist():
@@ -21,15 +22,17 @@ def parsefiles(files, wordcount):
 
 @memoize
 def parsefile(filename, wordcount):
-    content = file("./files/" + filename, 'r').read()
+    #content = file("./files/" + filename, 'r').read()
+    content = codecs.open("./files/" + filename, "r", "utf-8").read()
 
     washedcontent = sub('[^a-zA-Z\'_]', ' ', content).lower()
 
     excludedwords = ['the', 'an', 'a', 'of', 'in', 'at', 'and', 'or', 'to', 'his', 'hers', 'its', 'their', 'by']
 
     for word in washedcontent.split():
-        if word not in excludedwords:
-            if word in wordcount:
-                wordcount[word] += 1
+        encodedword = word.encode('utf8')
+        if encodedword not in excludedwords and len(encodedword) > 1:
+            if encodedword in wordcount:
+                wordcount[encodedword] += 1
             else:
-                wordcount[word] = 1
+                wordcount[encodedword] = 1
