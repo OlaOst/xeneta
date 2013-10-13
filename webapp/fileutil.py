@@ -15,11 +15,6 @@ def getfilelist():
     return files
 
 
-def parsefiles(files, wordcount):
-    for filename in files:
-        parsefile(filename, wordcount)
-
-
 #@memoize
 def parsefile(filename, wordcount):
     content = file("./files/" + filename, 'r').read()
